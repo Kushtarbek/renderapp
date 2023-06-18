@@ -1,0 +1,109 @@
+import './App.css';
+
+const App = () => {
+  const jsonData = {
+    //Paste the JSON data here
+    
+  };
+  
+   const renderComponents = () => {
+    return jsonData.layout.map(( component, index) => {
+      switch (component.type){
+        case 'input':
+          return (
+            <form key={index} style={component.style}>
+              <input type="text">{component.data}</input>
+            </form>
+          );
+          case 'dropdown':
+          return (
+            <div class="dropdown-content" key={index} style={component.style}>
+              <a href="#">{component.dropdown.value1}</a>
+              <a href="#">{component.dropdown.value2}</a>
+              <a href="#">{component.dropdown.value3}</a>
+            </div>
+          );
+          case 'text':
+            return (
+              <form key={index} style={component.style}>
+                <label for="reason">{component.text.reason}</label><br/>
+                <input type="text">{component.text}</input>
+
+                <label for="comments">{component.text.comment}</label><br/>
+                <textarea name="textarea">Comments:</textarea>
+              </form>
+
+          );
+          case 'Container':
+            return (
+              <div key={index} style={component.style}>
+                {component.text}
+              </div>
+          );
+
+          case 'button':
+            return (
+              <div key={index} style={component.style}>
+                {component.text}
+              </div>
+            );
+          default: 
+              return null;
+      }
+    });
+   }
+
+  return ( <div className="App">{renderComponents()}</div>
+  );
+}
+
+export default App;
+
+
+
+// const Input = ({ style, attributes}) => {
+//   return <input style={style} {...attributes}/>;
+// };
+
+// const Dropdown = ({ style, attributes }) => {
+//   const { options = [] } = attributes;
+//   return (
+//     <select style={style}>
+//       {options.map( (option, index) => (
+//         <option key={index}>{option}</option>
+//       ))}
+//     </select>
+//   );
+// };
+
+// const Text = ({ style, attributes }) => {
+//   const {text} = attributes;
+//   return <p style={style}>{text}</p>
+// }
+
+// const Container = ({ style, children}) => {
+//   return <div style={style}>{children}</div>
+// };
+
+// const renderComponents = (data) => {
+//   const { type, style, children, attributes } = data;
+
+//   switch(type){
+//     case 'Input':
+//       return <Input style={style} attributes={attributes}/>
+//     case 'Dropdown':
+//       return <Dropdown style={style} attributes={attributes}/>
+//     case 'Text':
+//       return <Text style={style} attributes={attributes} />
+//     case 'Container':
+//       return (
+//         <Container style={style}>
+//           {children.map((child, index) => {
+//             <div key={index}>{renderComponents(child)}</div>
+//           })}
+//         </Container>
+//       );
+//     default:
+//       return null;
+//   }
+// }
