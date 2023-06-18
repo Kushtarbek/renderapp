@@ -1,5 +1,5 @@
 import React from 'react';
-import Data from "./data.json";
+import Data from "../data.json";
 
 
 function JsonDataRenderer({ data }) {
@@ -52,7 +52,11 @@ function JsonDataRenderer({ data }) {
           );
         case 'button':
           return (
-            <button key={child.type} style={child.style.webStyle}>{child.data.title}</button>
+            <button key={child.type} 
+              style={child.style.webStyle} 
+              onFocus={child.style.actions.onFocus}
+              onMouseOver={child.style.actions.onHover}>
+                {child.data.title}</button>
           );
         default:
           return null;

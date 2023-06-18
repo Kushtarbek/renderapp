@@ -37,6 +37,8 @@ function renderChildren( children ) {
             placeholder={child.data.placeholder}
             value={child.data.value}
             style={child.style.webStyle}
+            //onFocus={child.style.actions.onFocus}
+            // onMouseOver={child.style.actions.onHover}
             />
           );
         case 'textarea':
@@ -49,7 +51,10 @@ function renderChildren( children ) {
           );
         case 'button':
           return (
-            <button style={child.style.webStyle}>{child.data.title}</button>
+            <button style={child.style.webStyle}
+            // onFocus={child.style.actions.onFocus}
+            // onMouseOver={child.style.actions.onHover}
+            >{child.data.title}</button>
           );
          case 'dropdown':
           return (
@@ -57,9 +62,14 @@ function renderChildren( children ) {
               {children && children.map( item => {
                 return (
                   <form>
-                    {item.title }
-                    <select name="quality" id="id">
-                      <option value="" selected="selected">{children.item}</option>
+                    {item.title}
+                    <select name="quality" key={item.id}>
+                      {item.options.map( option => {
+                        return (
+                          <option> {option.name}</option>
+                        )
+                      })}
+                      <option value="" selected="selected">{children.options}</option>
                     </select>
                   </form>
                 
