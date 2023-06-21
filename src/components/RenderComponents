@@ -6,7 +6,7 @@ const App = () => {
     
   };
   
-   const renderComponents = () => {
+   const RenderComponents = () => {
     return jsonData.layout.map(( component, index) => {
       switch (component.type){
         case 'input':

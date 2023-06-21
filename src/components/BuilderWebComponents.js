@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Data from "../data.json";
 
 
@@ -80,7 +80,15 @@ function BuilderWebComponents() {
     ]
   };
 
+  
+
   return (
-    <JsonDataRenderer data={jsonData} />
+    <div>
+      <JsonDataRenderer data={jsonData} />
+     
+    </div>
   );
 }
+
+
+export default BuilderWebComponents;

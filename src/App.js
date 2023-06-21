@@ -1,5 +1,7 @@
 import './App.css';
 import Data from "./data.json"
+import { useEffect, useState } from 'react';
+import axios from 'axios';
 
 
 function renderJsonData(data) {
@@ -84,10 +86,36 @@ function renderChildren( children ) {
 };
 
 const App = () => {   
+  const [posts, setPosts ] = useState([]);
+
+    useEffect(() => {
+    //   fetch('https://jsonplaceholder.typicode.com/posts?_limit=10')
+    //   .then( response => response.json())
+    //   .then(json => setData(json))
+    //   .catch(err => console.error(err));
+    // }, [])
+
+      axios.get('https://jsonplaceholder.typicode.com/posts')
+      .then(response => {
+        setPosts(response.data);
+      })
+      .catch(err => {
+        console.log(err);
+      })
+    }, []);
+
+
   return ( 
     <div className='App'>
-      {renderJsonData(Data.views)}
-    </div>
+      {/* {renderJsonData(Data.views)} */}
+      <ul>
+      {posts.map(post => {
+        <li key={post.id}>{post.title}</li>
+      })}
+      </ul>
+   </div>
+
+     
   );
 }
 
